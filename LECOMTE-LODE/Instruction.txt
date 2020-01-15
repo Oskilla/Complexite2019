@@ -1,0 +1,4 @@
+1 - Ouvrir dans un terminal l'interpréteur Julia avec la commande julia
+2 - Entrer la commande include("LECOMTE-LODE.jl") (le chemin du fichier peut également être utilisé a la place)
+3 - Lancer la fonction main avec la commande main()
+3a - Lorsqu'il vous ait demandé d'entrer le nom d'un fichier, vous pouvez l'écrire comme ça : Test/A2.dat (comme pour l'étape 2 le chemin du fichier peut également être utlisé)
