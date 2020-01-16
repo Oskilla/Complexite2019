@@ -1,6 +1,6 @@
-#
+# Soline LECOMTE - Gaël LODE
 
-using JuMP, GLPKMathProgInterface, DelimitedFiles, Statistics# On va utiliser JuMP et GLPK
+using DelimitedFiles, Statistics# On va utiliser JuMP et GLPK
 
 
 # Structures contenant les données d'un problème de bin-packing mono-dimensionnel
@@ -57,7 +57,6 @@ function parserClavier(clavier::String)
    	tab::Vector{Int64} = Vector{Int64}(undef,inn)
    	j= 1
    	while i <= length(clavier) && clavier[i] != '\n'&& j <= inn
-   		println(j)
    			if(clavier[i] == ':')
    				tab[j] = parse(Int64,deepcopy(clavier[tmp2:i-1]))
    				tmp2 = i+1
@@ -66,12 +65,6 @@ function parserClavier(clavier::String)
    			i = i+1
    	end
    	tab[j] = parse(Int64,deepcopy(clavier[tmp2:i-1]))
-    #=
-    inn = deepcopy(s[2])
-    tab::Vector{Int64} = Vector{Int64}(undef,inn)
-    for i in 1:inn
-    	tab[i] = deepcopy(s[i+2])
-    end=#
     return typeData(inm,inn,tab)
 end
 
@@ -121,7 +114,6 @@ for i in 1:donne.n
 		end
 	end
 	MLSA[mini] += donne.d[i]
-	println(MLSA)
 end
 
 resLSA = maximum(MLSA)
@@ -135,7 +127,6 @@ res1=typeLSA(resLSA, borneInfMax, borneInfMoy, resLSA/maxb)
 MLPT= fill(0,donne.m)
 tab1 = deepcopy(donne.d)
 sort!(tab1,rev=true)
-tmp = 0 #déroulement du temps
 for i in 1:donne.n
 	mini = 1
 	for j in 1:donne.m
@@ -144,7 +135,6 @@ for i in 1:donne.n
 		end
 	end
 	MLPT[mini] += tab1[i]
-
 end
 resLPT = maximum(MLPT)
 res2=typeLPT(resLPT, resLPT/maxb)
@@ -207,7 +197,6 @@ for l in 1:k
 	MLPT= fill(0,donne[l].m)
 	tab1 = deepcopy(donne[l].d)
 	sort!(tab1,rev=true)
-	tmp = 0 #déroulement du temps
 	for i in 1:donne[l].n
 		mini = 1
 		for j in 1:donne[l].m
